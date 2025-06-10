@@ -1,0 +1,6 @@
+# Variable using all roles
+project: "watcher"
+
+# User deploy
+deploy_user: deploy
+region: ap-northeast-1

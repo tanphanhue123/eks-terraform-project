@@ -1,0 +1,11 @@
+type: bastion
+
+#Log
+auth_log_path: "/var/log/syslog"
+sys_log_path: "/var/log/auth.log"
+
+log_group_type:
+  auth_log_group:
+    name: "{{ project }}-{{ region }}-{{ env }}-{{ type }}-{{ auth_log_path }}"
+  sys_log_group:
+    name: "{{ project }}-{{ region }}-{{ env }}-{{ type }}-{{ sys_log_path }}"

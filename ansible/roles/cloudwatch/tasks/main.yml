@@ -1,0 +1,46 @@
+- name: CLOUDWATCH > Get amazon-cloudwatch-agent package
+  get_url:
+    url: "https://s3.{{ region }}.amazonaws.com/amazoncloudwatch-agent-{{ region }}/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb"
+    dest: "/home/{{ deploy_user }}/amazon-cloudwatch-agent.deb"
+    mode: 0644
+    owner: "{{ deploy_user }}"
+    group: "{{ deploy_user }}"
+  become_user: "{{ deploy_user }}"
+  become: true
+
+- name: CLOUDWATCH > Install the collectd
+  apt:
+    name: collectd
+    state: latest
+    update_cache: true
+  become: true
+
+- name: CLOUDWATCH > Install the package
+  command: dpkg -i -E ./amazon-cloudwatch-agent.deb
+  args:
+    chdir: /home/{{ deploy_user }}
+  become: true
+
+- name: CLOUDWATCH > Put a config file {{ type }} in place
+  template:
+    src: "{{ type }}.json.j2"
+    dest: /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
+    mode: 0600
+    group: root
+    owner: root
+  become: true
+
+- name: CLOUDWATCH > Start the CloudWatch agent
+  command: /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
+  become: true
+
+- name: CLOUDWATCH > Enable amazon-cloudwatch-agent
+  service:
+    name: amazon-cloudwatch-agent
+    state: restarted
+    enabled: yes
+  become: true
+
+- name: CLOUDWATCH > Check the CloudWatch agent status
+  command: /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a status
+  become: true

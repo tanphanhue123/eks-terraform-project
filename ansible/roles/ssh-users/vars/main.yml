@@ -1,0 +1,4 @@
+user_lists:
+  # Infra User
+  - { user_name: "user1", groups_name: "sudo" , authorized_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCb+qwgH9dWKfALZJqzng6xVK27BO0zv4OEIw8l/21/3UM53WC9NKvGDJ29cc7PCd1k8Y4Jcz3K1SBI1ule4+wDyHnTO+f/Y9KS0zN7ME5mEbvYfMCwZtxewvAYxydlA0Xs02v9/CpyPukuHKA4ydiex6TVAsH1RrcBRrZ9Rh6CFXO8hexNFuDL/2JxxNY3A0AexYmg6Hq0gvedNOfplS93sUSrKFpmd5T+6QmMEOHLxiygGTPWAPjHvnl5rExgU0QJllDxkMgbx++nvfMLhF3oOV7m9iw5lX/qGn7YPpZHbEoYtxpWl3RjQ0cb6yO29ADseW8uvdrAIOAWQR8v9lz1" }
+  - { user_name: "user2", groups_name: "sudo" , authorized_keys: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPOnGoOZ6LLVrj+//m3S5bXOv1Y6Nm6/onjmjv5Qgx1j" }

@@ -1,0 +1,63 @@
+{
+  "agent": {
+    "metrics_collection_interval": 60,
+    "logfile": "/opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log",
+    "run_as_user": "deploy"
+  },
+  "metrics": {
+    "append_dimensions": {
+      "InstanceId": "${aws:InstanceId}"
+    },
+    "metrics_collected": {
+      "collectd": {
+        "collectd_security_level":"none",
+        "metrics_aggregation_interval": 60
+      },
+      "disk": {
+        "measurement": [
+          {"name": "used_percent", "rename": "DiskUtilization", "unit": "Percent"}
+        ],
+        "metrics_collection_interval": 60,
+        "resources": [
+          "*"
+        ]
+      },
+      "mem": {
+        "measurement": [
+          {"name": "mem_used_percent", "rename": "MemoryUtilization", "unit": "Percent"}
+        ],
+        "metrics_collection_interval": 60
+      },
+      "statsd": {
+        "metrics_aggregation_interval": 60,
+        "metrics_collection_interval": 60,
+        "service_address": ":8125"
+      }
+    },
+    "aggregation_dimensions": [
+      ["InstanceId"]
+    ]
+  },
+  "logs": {
+    "logs_collected": {
+      "files": {
+        "collect_list": [
+          {
+            "file_path": "{{ auth_log_path }}",
+            "log_group_name": "{{ log_group_type.auth_log_group.name }}",
+            "log_stream_name": "{instance_id}",
+            "timestamp_format": "%b %d %H:%M:%S",
+            "timezone": "Local"
+          },
+          {
+            "file_path": "{{ sys_log_path }}",
+            "log_group_name": "{{ log_group_type.sys_log_group.name }}",
+            "log_stream_name": "{instance_id}",
+            "timestamp_format": "%b %d %H:%M:%S",
+            "timezone": "Local"
+          }
+        ]
+      }
+    }
+  }
+}
