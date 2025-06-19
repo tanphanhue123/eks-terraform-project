@@ -53,6 +53,8 @@
 | [helm_release.kube-prometheus](https://registry.terraform.io/providers/hashicorp/helm/2.9.0/docs/resources/release) | resource |
 | [helm_release.loki](https://registry.terraform.io/providers/hashicorp/helm/2.9.0/docs/resources/release) | resource |
 | [kubectl_manifest.alloy](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/resources/manifest) | resource |
+| [kubectl_manifest.argocd_configmap](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/resources/manifest) | resource |
+| [kubectl_manifest.argocd_secret](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/resources/manifest) | resource |
 | [kubectl_manifest.eso](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/resources/manifest) | resource |
 | [kubectl_manifest.eso_secret_store](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/resources/manifest) | resource |
 | [kubectl_manifest.karpenter_node_class](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/resources/manifest) | resource |
