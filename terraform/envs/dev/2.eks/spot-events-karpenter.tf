@@ -113,8 +113,3 @@ resource "aws_cloudwatch_event_target" "karpenter" {
 
   depends_on = [aws_sqs_queue.karpenter]
 }
-
-
-
-
-

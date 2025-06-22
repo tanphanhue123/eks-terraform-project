@@ -83,4 +83,3 @@ resource "helm_release" "loki" {
 
   depends_on = [module.eks_cluster]
 }
-
